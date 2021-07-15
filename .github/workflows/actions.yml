@@ -1,14 +1,18 @@
 name: Actions Workflow
 
 on:
-  repository_dispatch:
-    types: [build]
+  push:
+    branches:
+      - master
+      - 'feature/*'
+  # repository_dispatch:
+  #   types: [build]
   # schedule:
   #   - cron: "0/5 * * * *"
   #   - cron: "0/6 * * * *"
  # push:
-  pull_request:
-    types: [closed, assigned, opened, reopened]
+  # pull_request:
+  #   types: [closed, assigned, opened, reopened]
     
 
 jobs:
@@ -40,3 +44,11 @@ jobs:
           who-to-greet: Liran
       - name: Log greeting time
         run: echo "${{ steps.greet.outputs.time }}"
+      - name: Get JSON Property
+        id: projects
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: workspace.json
+          prop_path: 'projects'
+      - run: echo ${{steps.projects.outputs.prop}} 
+
