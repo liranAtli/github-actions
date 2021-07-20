@@ -49,6 +49,6 @@ jobs:
         uses: notiz-dev/github-action-json-property@release
         with:
           path: workspace.json
-          prop_path: 'projects'
+          prop_path: 'projects.'
       - run: echo ${{steps.projects.outputs.prop}} 
 
