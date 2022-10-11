@@ -4,16 +4,15 @@ on:
   push:
     branches:
       - master
-      - 'feature/*'
+      - "feature/*"
   # repository_dispatch:
   #   types: [build]
   # schedule:
   #   - cron: "0/5 * * * *"
   #   - cron: "0/6 * * * *"
- # push:
+  # push:
   # pull_request:
   #   types: [closed, assigned, opened, reopened]
-    
 
 jobs:
   run-github-actions:
@@ -24,13 +23,13 @@ jobs:
       - name: List Files
         run: |
           pwd
-          ls -a
+          ls -all
           echo $GITHUB_SHA
           echo $GITHUB_REPOSITORY
           echo $GITHUB_WORKSPACE
           echo "${{ github.token }}"
-         # git clone git@github:liranAtli:$GITHUB_REPOSITORY
-         # git checkout $GITHUB_SHA
+        # git clone git@github:liranAtli:$GITHUB_REPOSITORY
+        # git checkout $GITHUB_SHA
       - name: Checkout
         uses: actions/checkout@v1
       - name: List Files After
@@ -49,6 +48,5 @@ jobs:
         uses: notiz-dev/github-action-json-property@release
         with:
           path: workspace.json
-          prop_path: 'projects.'
-      - run: echo ${{steps.projects.outputs.prop}} 
-
+          prop_path: "projects."
+      - run: echo ${{steps.projects.outputs.prop}}
